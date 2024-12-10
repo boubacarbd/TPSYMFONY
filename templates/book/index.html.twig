@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book index{% endblock %}
+
+{% block body %}
+    <h1>VOICI LA LISTE DES LIVRES</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>PublishedAt</th>
+
+    {% if is_granted("ROLE_ADMIN") %}
+
+                <th>actions</th>
+    {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.genre }}</td>
+                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+
+
+        {% if is_granted("ROLE_ADMIN") %}
+
+                <td>
+                    <a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
+                    <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
+                </td>
+            </tr>
+            {% endif %}
+
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    {% if is_granted("ROLE_ADMIN") %}
+
+        <br>
+
+    <a href="{{ path('app_book_new') }}">AJOUTER UN NOUVEAU LIVRE</a>    <br>
+
+    {% endif %}
+
+    <br> 
+
+    <a href ={{ path("app_home") }}> RETOUR A LA PAGE D'ACCUEIL </a><br>
+
+{% endblock %}

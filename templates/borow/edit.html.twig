@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Borrow{% endblock %}
+
+{% block body %}
+    <h1>Edit Borrow</h1>
+
+    {{ include('borow/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_borow_index') }}">back to list</a>
+
+    {{ include('borow/_delete_form.html.twig') }}
+{% endblock %}

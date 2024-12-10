@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+    <h1>Register</h1>
+    <br>
+
+    <a href ={{ path("app_home")}}>ACCUEIL </a> <br>
+    <br>
+
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }} <br>
+        {{ form_row(registrationForm.name) }}<br>
+        {{ form_row(registrationForm.email) }}<br>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}<br>
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button><br>
+    {{ form_end(registrationForm) }}
+{% endblock %}
